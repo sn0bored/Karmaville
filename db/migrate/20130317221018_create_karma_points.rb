@@ -7,5 +7,7 @@ class CreateKarmaPoints < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :karma_points, :user_id
   end
 end

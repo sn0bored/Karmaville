@@ -10,3 +10,27 @@
     <%= render 'user_row', :user => user %>
   <% end %>
 </table>
+
+<% if @current_page > 5 %>
+  <a href=?page=1\>First</a>
+  <a href=?page=<%="#{@current_page - 10}"%>> Prev </a>
+<% end %>
+
+<% if @current_page <= 10 %>
+  <% (1..10).each do |page| %>
+    <a href=?page=<%="#{page}"%>><%="#{page}"%></a>
+  <% end %>
+<% elsif (@current_page - 10) >= (@last_page - 10) %>
+   <% ((@last_page - 10)..@last_page).each do |page| %>
+    <a href=?page=<%="#{page}"%>><%="#{page}"%></a>
+  <% end %>
+<% else %>
+  <% ((@current_page - 5)..(@current_page + 4)).each do |page| %>
+    <a href=?page=<%="#{page}"%>><%="#{page}"%></a>
+  <% end %>
+<% end %>
+
+<% if @current_page < (@last_page - 5) %>
+  <a href=?page=<%="#{@current_page + 10}"%>> Next </a>
+  <a href=?page=<%="#{@last_page}"%>>Last</a>
+<% end %>
